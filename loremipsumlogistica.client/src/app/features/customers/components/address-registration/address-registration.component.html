@@ -1,0 +1,90 @@
+<h2 mat-dialog-title>Add Address</h2>
+<mat-dialog-content>
+  <form [formGroup]="addressForm" (ngSubmit)="onSubmit()">
+    <div class="form-group">
+      <label for="zipCode">ZIP Code</label>
+      <div class="input-group">
+        <mat-icon class="input-icon">mail_outline</mat-icon>
+        <input type="text" id="zipCode" class="form-control" formControlName="zipCode" required>
+      </div>
+      <div *ngIf="addressForm.get('zipCode')?.hasError('required')" class="text-danger">ZIP Code is required.</div>
+    </div>
+
+    <button type="button" class="fetch-button" (click)="fetchAddress()">
+      <mat-icon>search</mat-icon> Fetch Address
+    </button>
+
+    <div class="form-group">
+      <label for="street">Street</label>
+      <div class="input-group">
+        <mat-icon class="input-icon">place</mat-icon>
+        <input type="text" id="street" class="form-control" formControlName="street" required>
+      </div>
+      <div *ngIf="addressForm.get('street')?.hasError('required')" class="text-danger">Street is required.</div>
+    </div>
+
+    <div class="form-group">
+      <label for="number">Number</label>
+      <div class="input-group">
+        <mat-icon class="input-icon">dashboard</mat-icon>
+        <input type="text" id="number" class="form-control" formControlName="number" required>
+      </div>
+      <div *ngIf="addressForm.get('number')?.hasError('required')" class="text-danger">Number is required.</div>
+      <div *ngIf="addressForm.get('number')?.hasError('pattern')" class="text-danger">Must be a valid number.</div>
+    </div>
+
+    <div class="form-group">
+      <label for="complement">Complement</label>
+      <div class="input-group">
+        <mat-icon class="input-icon">edit</mat-icon>
+        <input type="text" id="complement" class="form-control" formControlName="complement">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="neighborhood">Neighborhood</label>
+      <div class="input-group">
+        <mat-icon class="input-icon">location_city</mat-icon>
+        <input type="text" id="neighborhood" class="form-control" formControlName="neighborhood">
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="city">City</label>
+      <div class="input-group">
+        <mat-icon class="input-icon">domain</mat-icon>
+        <input type="text" id="city" class="form-control" formControlName="city" required>
+      </div>
+      <div *ngIf="addressForm.get('city')?.hasError('required')" class="text-danger">City is required.</div>
+    </div>
+
+    <div class="form-group">
+      <label for="state">State (UF)</label>
+      <div class="input-group">
+        <mat-icon class="input-icon">map</mat-icon>
+        <input type="text" id="state" class="form-control" formControlName="state" required>
+      </div>
+      <div *ngIf="addressForm.get('state')?.hasError('required')" class="text-danger">State (UF) is required.</div>
+      <div *ngIf="addressForm.get('state')?.hasError('minlength') || addressForm.get('state')?.hasError('maxlength')" class="text-danger">State (UF) must be 2 characters long.</div>
+    </div>
+
+    <div class="form-group">
+      <label for="addressType">Address Type</label>
+      <div class="input-group">
+        <mat-icon class="input-icon">category</mat-icon>
+        <select id="addressType" class="form-control" formControlName="addressType" required>
+          <option *ngFor="let type of addressTypes" [value]="type.value">{{ type.label }}</option>
+        </select>
+      </div>
+    </div>
+
+    <div mat-dialog-actions>
+      <button mat-button (click)="onCancel()">
+        <mat-icon>cancel</mat-icon> Cancel
+      </button>
+      <button mat-button type="submit" color="primary" [disabled]="addressForm.invalid">
+        <mat-icon>add</mat-icon> Add Address
+      </button>
+    </div>
+  </form>
+</mat-dialog-content>

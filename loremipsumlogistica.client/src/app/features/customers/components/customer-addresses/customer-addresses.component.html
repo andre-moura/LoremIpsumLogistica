@@ -1,0 +1,60 @@
+<mat-toolbar color="primary">
+  <span>Addresses for {{ customer.name }}</span>
+</mat-toolbar>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="street">
+    <th mat-header-cell *matHeaderCellDef>Street</th>
+    <td mat-cell *matCellDef="let address">{{ address.street }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="number">
+    <th mat-header-cell *matHeaderCellDef>Number</th>
+    <td mat-cell *matCellDef="let address">{{ address.number }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="complement">
+    <th mat-header-cell *matHeaderCellDef>Complement</th>
+    <td mat-cell *matCellDef="let address">{{ address.complement }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="neighborhood">
+    <th mat-header-cell *matHeaderCellDef>Neighborhood</th>
+    <td mat-cell *matCellDef="let address">{{ address.neighborhood }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="city">
+    <th mat-header-cell *matHeaderCellDef>City</th>
+    <td mat-cell *matCellDef="let address">{{ address.city }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="state">
+    <th mat-header-cell *matHeaderCellDef>State</th>
+    <td mat-cell *matCellDef="let address">{{ address.state }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="zipCode">
+    <th mat-header-cell *matHeaderCellDef>ZIP Code</th>
+    <td mat-cell *matCellDef="let address">{{ address.zipCode }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="addressType">
+    <th mat-header-cell *matHeaderCellDef>Address Type</th>
+    <td mat-cell *matCellDef="let address">{{ getAddressTypeLabel(address.addressType) }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="actions">
+    <th mat-header-cell *matHeaderCellDef>Actions</th>
+    <td mat-cell *matCellDef="let address">
+      <button mat-button (click)="editAddress(address)">
+        <mat-icon>edit</mat-icon> Edit
+      </button>
+      <button mat-button color="warn" (click)="deleteAddress(address)">
+        <mat-icon>delete</mat-icon> Delete
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

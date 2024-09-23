@@ -1,3 +1,7 @@
 LoremIpsumLogistica.Server/bin/
 LoremIpsumLogistica.Server/obj/
+
+loremipsumlogistica.client/obj/
+loremipsumlogistica.client/bin/
+
 .vs/
